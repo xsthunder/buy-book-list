@@ -9,7 +9,7 @@
   "author": "xsthunder",
   "license": "ISC",
   "dependencies": {
-    "angularjs": "0.0.1",
+    "angular": "^1.6.9",
     "koa": "^2.5.0",
     "koa-body": "^2.5.0",
     "koa-router": "^7.4.0",

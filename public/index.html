@@ -1,10 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app="app">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>buy-book-list</title>
 </head>
-<body>
+<body style="overflow-y: hidden !important">
+<div ng-controller="AppCtrl">
+    <div ng-repeat="book in list">
+        <input type="checkbox" ng-model="book.yes" ng-click="check()">
+        <span>{{book.name}}</span>
+        <span>{{insert(book.price)}}</span>
+    </div>
+    <span>who are you</span><input ng-model="who">
+    <br/>
+    <button ng-click="post()">post</button>
+    <br/>
+    <span>{{msg}}</span>
+    <br/>
+    <span>please pay {{insert(tol)}}</span>
+    <br/>
+    <button ng-click="getAllInfo()">fetch all transactions</button>
+    <div ng-repeat="tran in allInfo">
+        <span>{{tran.who}} buys {{tran.list.toString()}}, need to pay {{insert(tran.tol)}}</span>
+    </div>
 
+</div>
 </body>
+<script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+<script src="./ctrl.js"></script>
+<script src="./urlCnst.js"></script>
 </html>

@@ -25,14 +25,12 @@ app.context.good = function(msg,res){
  */
 app.context.bad= function(msg,res){
     let ans = {};
-    if(app.env==='development') ans['res'] = (res&&(res['message']||res))||{};
+    ans['res'] = (res&&(res['message']||res))||{};
     ans['err'] = 1;
     ans['msg'] = msg;
     this.body = ans;
 };
 
-app.context.configure = require('../configure');
-app.env = app.context.configure.app.env;
 app.context.mongoose = require('./mongoose');
 
 /**

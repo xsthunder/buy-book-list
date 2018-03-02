@@ -4,23 +4,20 @@
  */
 "use strict";
 
-const Koa = require('koa');
-const app = new Koa();
+const app = require('./app/koa.js');
+
 const serveStatic = require('koa-serve-static');
 const router = require('./app/router.js');
 const KoaBody = require('koa-body');
-
-
-
-app.use(serveStatic('./public', {}));
 
 app
     .use(KoaBody({
         multipart:true
     }))
     .use(router.routes());
-//.use(router.allowedMethods());
 
+//.use(router.allowedMethods());
+app.use(serveStatic('./public', {}));
 
 
 app.listen(3000);

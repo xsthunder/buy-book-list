@@ -4,28 +4,21 @@
  */
 "use strict";
 
-const configure = require('./../configure');
 
 const mongoose = require('mongoose');
-
-require('./schema/kitty');
-require('./schema/user');
-// require('./schema/consultant');
-require('./schema/essay');
-
-mongoose.connect(configure.mongoose.url,{
-    useMongoClient:true
+require('./schema');
+mongoose.connect('mongodb://127.0.0.1:19970/buy-book-list',{
 });
 mongoose.connection.on('connected',function () {
-    console.log(`${Date()} mongoose connected to ${configure.mongoose.url}`);
+    console.log(`${Date()} mongoose connected to `);
 });
 
 mongoose.connection.on('error',function (err) {
-    console.error(`${Date()} mongoose error ${configure.mongoose.url} ${err}`)
+    console.error(`${Date()} mongoose error  ${err}`)
 });
 
 mongoose.connection.on('disconnected',function () {
-    console.error(`${Date()} mongoose disconnected ${configure.mongoose.url}`)
+    console.error(`${Date()} mongoose disconnected `)
 });
 mongoose.Promise = global.Promise;
 module.exports = mongoose;
