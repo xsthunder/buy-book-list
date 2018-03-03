@@ -17,12 +17,14 @@
         $scope.insert = function (s) {
             s = s+'';
             var l = s.length;
+            if(l<=1)return s;
             return s.substr(0,l-1)+'.'+s.substr(l-1);
         };
         $scope.post = function () {
-            if(!$scope.who)return alert('who are you?');
+            if(!$scope.who||!$scope.id)return alert('who are you?');
             urlCnst.post('book',{
                 who:$scope.who,
+                id:$scope.id,
                 list:$scope.list
             },function (err,res) {
                 $scope.msg = (err?"FAILED":"SUCCEEDED") +' '+ Date();
@@ -48,6 +50,12 @@
             urlCnst.get('person',function (err,res) {
                 if(err)return alert(err);
                 $scope.allInfo = res.res;
+            })
+        }
+        $scope.getBookSum= function () {
+            urlCnst.get('book',function (err,res) {
+                if(err)return alert(err);
+                $scope.sumBook = res.res;
             })
         }
     }

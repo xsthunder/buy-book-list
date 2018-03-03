@@ -31,11 +31,10 @@ schema.statics.newInstance = function (body) {
     tmp.list=[];
     // console.log('newI',body,body['who'],body['list']);
     body['list'].forEach( (o)=>{
-        if(o['yes']){
-            tmp.tol+=Number.parseFloat(o['price']);
-            tmp.list.push(o['name']);
-        }
+        tmp.tol+=Number.parseInt(o['price']);
+        tmp.list.push(o['name']);
     } );
+    if(!tmp.tol)tmp.payed = true;
     return tmp;
 };
 

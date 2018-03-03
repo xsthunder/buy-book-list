@@ -12,19 +12,35 @@
         <span>{{book.name}}</span>
         <span>{{insert(book.price)}}</span>
     </div>
-    <span>who are you</span><input ng-model="who">
+    <span>your name</span><input ng-model="who">
+    <br/>
+    <span>your id</span><input ng-model="id">
     <br/>
     <button ng-click="post()">post</button>
     <br/>
     <span>{{msg}}</span>
     <br/>
-    <span>please pay {{insert(tol)}}</span>
+    <span>每个同学只能post一次</span>
     <br/>
+    <div ng-if = 'tol'>
+        <span>please pay {{insert(tol)}} 转账（备注姓名)</span>
+        <br/>
+        <span>binary_sea#yahoo.co.jp(#改@)，曾健骏，我核对金额后手动改变isPaid状态，所以会有延迟，</span>
+        <br/>
+    </div>
     <button ng-click="getAllInfo()">fetch all transactions</button>
     <div ng-repeat="tran in allInfo">
-        <span>{{tran.who}} buys {{tran.list.toString()}}, need to pay {{insert(tran.tol)}}</span>
+        <span>{{tran.who}} bookTaken?{{tran.taken}} ,isPaid:</span>
+        <span ng-style="(!tran.payed?{'color':'red'}:{'color':'black'})">{{tran.payed}}</span>
+        <span>，need to pay {{insert(tran.tol)}}, buys {{tran.list.toString()}} </span>
     </div>
-
+    <br/>
+    <button ng-click="getBookSum()">fetch book summary</button>
+    <div ng-repeat="(key,val) in sumBook">
+        {{(key==='tol'?insert(val):val)+':'+key }}
+        <!--<span>{{book}}</span>-->
+        <!--<span>{{sumBook[book]}}</span>-->
+    </div>
 </div>
 </body>
 <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
