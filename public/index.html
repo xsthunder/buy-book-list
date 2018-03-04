@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>buy-book-list</title>
 </head>
-<body style="overflow-y: hidden !important">
+<body >
 <div ng-controller="AppCtrl">
     <div ng-repeat="book in list">
         <input type="checkbox" ng-model="book.yes" ng-click="check()">
@@ -35,6 +35,38 @@
         <span>，need to pay {{insert(tran.tol)}}, buys {{tran.list.toString()}} </span>
     </div>
     <br/>
+
+
+    <table border="1">
+        <tr >
+            <td>Name</td>
+            <!--bookName-->
+            <td ng-repeat="book in list">
+                {{book.name}}
+            </td>
+            <!--end bookName-->
+        </tr>
+        <tr >
+            <td>Price</td>
+            <!--book price-->
+            <td ng-repeat="book in list">
+                {{insert(book.price)}}
+            </td>
+            <!--end book price-->
+        </tr>
+        <!--tran info-->
+        <tr ng-repeat="tran in allInfo">
+            <td>{{tran.who}}</td>
+            <td ng-repeat="n in tran.nlist track by $index">
+                {{n}}
+            </td>
+        </tr>
+        <!--end tran info-->
+    </table>
+
+
+
+
     <button ng-click="getBookSum()">fetch book summary</button>
     <div ng-repeat="(key,val) in sumBook">
         {{(key==='tol'?insert(val):val)+':'+key }}

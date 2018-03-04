@@ -26,7 +26,9 @@ router.post('/',async (ctx)=>{
             let p = body['list'][i]['price'];
             let n= body['list'][i]['name'];
             let b = body['list'][i]['yes'];
-            console.log(b,p,ctx.price(n),n);
+            //console.log(b,p,ctx.price(n),n);
+            //TODO what if body['list'] has more than one name of a book
+            //will buy the book twice
             if(b && p === ctx.price(n) && ctx.price(n)) {
                 list.push({
                     name: n,

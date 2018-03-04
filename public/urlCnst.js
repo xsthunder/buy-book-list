@@ -12,6 +12,7 @@
         var self = {};
         //self.baseUrl = 'http://139.224.114.96:8080/dilitter/';
         self.baseUrl='';
+        self.baseUrl='http://l.lovecust.com:3000/';
         self.get = function (url, cb) {
             $http.get(self.baseUrl + url)
                 .then(function (res) {

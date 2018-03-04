@@ -8,10 +8,15 @@
     app.controller('AppCtrl',fnList);
     function fnList($http,$scope,urlCnst) {
         var log = console.log;
+        var bookName = [];
         urlCnst.get('get-book-list',function (err,res) {
             log(res,err);
             $scope.list = res.res.list;
-        })
+            var i = 0;
+            for(i = 0;i<$scope.list.length;i++){
+                bookName.push($scope.list[i].name);
+            }
+        });
         $scope.who = '';
         $scope.tol = 0;
         $scope.insert = function (s) {
@@ -49,9 +54,25 @@
             $scope.allInfo = [];
             urlCnst.get('person',function (err,res) {
                 if(err)return alert(err);
-                $scope.allInfo = res.res;
+                var list = bookName;
+                var res = res.res;
+                var i = 0;
+                var j = 0;
+                console.log(list);
+                for(i = 0;i<res.length;i++){
+                    var now = res[i];
+                    now.nlist = [];
+                    console.log(now);
+                    for(j = 0;j<list.length;j++){
+
+                        var tmp = now.list.includes(list[j]);
+                        now.nlist.push(tmp?1:0)
+                    }
+                }
+                $scope.allInfo = res;
+                console.log(res);
             })
-        }
+        };
         $scope.getBookSum= function () {
             urlCnst.get('book',function (err,res) {
                 if(err)return alert(err);
